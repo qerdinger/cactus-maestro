@@ -2,7 +2,9 @@ package main
 
 import (
 	"cmaestro-api/internal/router"
+	cingest "cmaestro-ingest"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5/middleware"
@@ -18,11 +20,35 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	r.Get("/users", getUsers)
+
+	// **************************************** SERVICES ****************************************
 	// system
 	// health
 	// status
 
-	r.ListenAndServe(":8080")
+	// registry
+	// List every images hosted on local docker registry
+
+	// registry/create (update-in-place)
+	// registry/list
+	// registry/delete
+	// registry/_/function_path
+
+	// insight/
+	// insight/_/function_path
+	// ******************************************************************************************
+	// All these previous methods could be authenticated and authorised (feature available later)
+	// ******************************************************************************************
+
+	//r.ListenAndServe(":8080")
+
+	funcs := cingest.Ingest(`from cactuskit import ApiMethod, ApiProtocol, HttpStatus, cactuize
+
+@cactuize()
+def simple_entrypoint():
+    return f"Hello World from {simple_entrypoint}"`)
+
+	fmt.Println(funcs)
 }
 
 func getUsers(w http.ResponseWriter, _ *http.Request) {

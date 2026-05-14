@@ -11,12 +11,15 @@ func main() {
 	r := chi.NewRouter()
 
 	r.Get("/users", getUsers)
+	// system
+	// health
+	// status
 
 	http.ListenAndServe(":8080", r)
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
-	users := []string{"Alice", "Bob"}
+	users := []string{"admin"}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)

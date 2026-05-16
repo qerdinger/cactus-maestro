@@ -10,8 +10,7 @@ type Router struct {
 	chi.Router
 }
 
-// New creates a new router instance.
-func New() *Router {
+func NewRouter() *Router {
 	return &Router{
 		Router: chi.NewRouter(),
 	}

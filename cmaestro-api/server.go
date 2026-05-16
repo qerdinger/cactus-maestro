@@ -3,6 +3,7 @@ package main
 import (
 	"cmaestro-api/internal/router"
 	cingest "cmaestro-ingest"
+	cregistry "cmastero-registry"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -11,7 +12,7 @@ import (
 )
 
 func main() {
-	r := router.New()
+	r := router.NewRouter()
 
 	// Middlewares Configuration
 	r.Use(middleware.RequestID)
@@ -49,6 +50,9 @@ def simple_entrypoint():
     return f"Hello World from {simple_entrypoint}"`)
 
 	fmt.Println(cactuizedFunctions)
+
+	registry := cregistry.NewRegistry("http://localhost:5001", nil, nil)
+	fmt.Println("Catalog : ", registry.GetCatalog())
 }
 
 func getUsers(w http.ResponseWriter, _ *http.Request) {

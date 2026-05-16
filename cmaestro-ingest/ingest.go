@@ -2,9 +2,9 @@ package cmaestro_ingest
 
 import "fmt"
 
-func Ingest(data string) []Function {
+func Ingest(data string) []*Function {
 	fmt.Println("Ingesting", data)
-	return []Function{
+	return []*Function{
 		NewFunction("simple_entrypoint", "string"),
 	}
 }

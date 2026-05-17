@@ -52,7 +52,12 @@ def simple_entrypoint():
 	fmt.Println(cactuizedFunctions)
 
 	registry := cregistry.NewRegistry("http://localhost:5001", nil, nil)
-	fmt.Println("Catalog : ", registry.GetCatalog())
+	catalog, _ := registry.GetCatalog()
+	fmt.Println("Catalog : ", catalog)
+	dig, err := registry.GetDigest("registry", "latest")
+	fmt.Println(dig, err)
+	status, err := registry.RemoveTag("registry", "latest")
+	fmt.Println("Has been deleted?", status, err)
 }
 
 func getUsers(w http.ResponseWriter, _ *http.Request) {

@@ -2,7 +2,6 @@ package main
 
 import (
 	"cmaestro-api/internal/router"
-	cingest "cmaestro-ingest"
 	cregistry "cmastero-registry"
 	"encoding/json"
 	"fmt"
@@ -10,6 +9,14 @@ import (
 
 	"github.com/go-chi/chi/v5/middleware"
 )
+
+/*
+Infrastructure Requirements
+
+Docker Registry | image=registry:3 | exposing=:5001
+Redis DB 		| image=redis
+
+*/
 
 func main() {
 	r := router.NewRouter()
@@ -43,21 +50,21 @@ func main() {
 
 	//r.ListenAndServe(":8080")
 
-	cactuizedFunctions := cingest.Ingest(`from cactuskit import ApiMethod, ApiProtocol, HttpStatus, cactuize
+	/*cactuizedFunctions := cingest.Ingest(`from cactuskit import ApiMethod, ApiProtocol, HttpStatus, cactuize
 
-@cactuize()
-def simple_entrypoint():
-    return f"Hello World from {simple_entrypoint}"`)
+	@cactuize()
+	def simple_entrypoint():
+	    return f"Hello World from {simple_entrypoint}"`)
 
-	fmt.Println(cactuizedFunctions)
+		//fmt.Println(cactuizedFunctions)*/
 
 	registry := cregistry.NewRegistry("http://localhost:5001", nil, nil)
 	catalog, _ := registry.GetCatalog()
 	fmt.Println("Catalog : ", catalog)
-	dig, err := registry.GetDigest("registry", "latest")
-	fmt.Println(dig, err)
-	status, err := registry.RemoveTag("registry", "latest")
-	fmt.Println("Has been deleted?", status, err)
+	//dig, err := registry.GetDigest("registry", "latest")
+	//fmt.Println(dig, err)
+	//status, err := registry.RemoveTag("registry", "latest")
+	//fmt.Println("Has been deleted?", status, err)
 }
 
 func getUsers(w http.ResponseWriter, _ *http.Request) {

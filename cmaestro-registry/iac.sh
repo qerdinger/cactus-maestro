@@ -1,0 +1,1 @@
+docker run -d -p 5001:5000 --restart always --name cmaestro_img-registry registry:3

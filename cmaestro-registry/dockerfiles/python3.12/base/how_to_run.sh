@@ -1,0 +1,1 @@
+docker run --rm -v "$(pwd)":/app -w /app localhost:5001/cmaestro-python:3.12 cactuized_script.py

@@ -1,0 +1,1 @@
+docker build -t localhost:5001/cmaestro-python:3.12 ./

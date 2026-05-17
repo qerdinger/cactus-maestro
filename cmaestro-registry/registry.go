@@ -42,7 +42,7 @@ func (r *Registry) requestBuilder(method string, url string, body io.Reader) (*h
 	return req, nil
 }
 
-func NewRegistry(address string, username *string, password *string) *Registry {
+func New(address string, username *string, password *string) *Registry {
 	r := Registry{config: &RegistryConfig{address, username, password}, client: &http.Client{}}
 
 	return &r

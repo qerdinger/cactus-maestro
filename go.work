@@ -4,4 +4,5 @@ use (
 	./cmaestro-api
 	./cmaestro-ingest
 	./cmaestro-registry
+	cmaestro-db
 )
